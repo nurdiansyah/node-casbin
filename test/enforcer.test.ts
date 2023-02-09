@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { test, expect, describe, beforeEach } from 'vitest';
 import { readFileSync } from 'fs';
 
 import { newModel, newEnforcer, Enforcer, FileAdapter, StringAdapter, Util } from '../src';
@@ -597,9 +598,9 @@ test('test ABAC multiple eval()', async () => {
   );
 
   const e = await newEnforcer(m, policy);
-  await testEnforce(e, 56, (98 as unknown) as string, 'read', true);
-  await testEnforce(e, 23, (67 as unknown) as string, 'read', false);
-  await testEnforce(e, 78, (34 as unknown) as string, 'read', false);
+  await testEnforce(e, 56, 98 as unknown as string, 'read', true);
+  await testEnforce(e, 23, 67 as unknown as string, 'read', false);
+  await testEnforce(e, 78, 34 as unknown as string, 'read', false);
 });
 
 test('TestEnforceSync', async () => {

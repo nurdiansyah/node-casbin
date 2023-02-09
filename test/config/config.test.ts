@@ -1,3 +1,4 @@
+import { it, describe, expect } from 'vitest';
 import { Config } from '../../src';
 
 const config = Config.newConfig('test/config/testini.ini');

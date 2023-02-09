@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import { DefaultRoleManager } from '../../src';
 import { keyMatch2Func } from '../../src/util';
 

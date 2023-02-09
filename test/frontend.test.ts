@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { test, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { newEnforcer } from '../src';
 import { casbinJsGetPermissionForUser } from '../src';
@@ -32,7 +33,7 @@ test('TestCasbinJsGetPermissionForUser', async () => {
   expect(received['m']).toBe(expectedModelStr.replace(/\n\n/g, '\n'));
   const expectedPoliciesStr = readFileSync('examples/rbac_with_hierarchy_policy.csv').toString();
 
-  let expectedPolicyItem = expectedPoliciesStr.split(RegExp(',|\n'));
+  let expectedPolicyItem = expectedPoliciesStr.split(RegExp('[,\n]'));
   expectedPolicyItem = expectedPolicyItem.filter((item) => item !== null && item.trim() !== '');
 
   let i = 0;

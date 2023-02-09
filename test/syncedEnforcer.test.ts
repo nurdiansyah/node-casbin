@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import { newModel, newSyncedEnforcer } from '../src';
 
 test('TestGFunctionInSyncedEnforcerWithRoles', async () => {

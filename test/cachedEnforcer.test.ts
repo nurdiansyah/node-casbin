@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { test, expect } from 'vitest';
 import { Enforcer, newCachedEnforcer } from '../src';
 
 async function testEnforce(e: Enforcer, sub: string, obj: string, act: string, res: boolean): Promise<void> {

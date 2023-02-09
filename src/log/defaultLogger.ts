@@ -13,10 +13,16 @@
 // limitations under the License.
 
 import { Logger } from './logger';
+import { getLogger, Logger as DeboxLogger } from '@deboxsoft/module-core';
 
 // DefaultLogger is the implementation for a Logger
 export class DefaultLogger implements Logger {
   private enable = false;
+  logger: DeboxLogger;
+
+  constructor() {
+    this.logger = getLogger();
+  }
 
   public enableLog(enable: boolean): void {
     this.enable = enable;

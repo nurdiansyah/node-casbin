@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { test, expect } from 'vitest';
 import { getLogger, logPrint, Util as util } from '../src';
 import { compile } from 'expression-eval';
 

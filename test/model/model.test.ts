@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import { ConfigInterface, newModel, newModelFromFile, newModelFromString, requiredSections, sectionNameMap } from '../../src';
 import { readFileSync } from 'fs';
 
@@ -55,29 +56,28 @@ test('TestNewModelFromString', () => {
   expect(m !== null).toBe(true);
 });
 
-test('TestLoadModelFromConfig', (done) => {
+test('TestLoadModelFromConfig', () => {
   let m = newModel();
   m.loadModelFromConfig(basicConfig);
 
   m = newModel();
+  expect(() => {
+    try {
+      m.loadModelFromConfig(new MockConfig());
+      expect('mestinya throw error').toBe('');
+    } catch (e: any) {
+      console.log(e);
+      if (e instanceof TypeError) {
+        throw e;
+      }
 
-  try {
-    m.loadModelFromConfig(new MockConfig());
-
-    done.fail('empty config should return error');
-  } catch (e) {
-    if (e instanceof TypeError) {
-      throw e;
+      if (e instanceof Error) {
+        requiredSections.forEach((n) => {
+          if (!e.message.includes(n)) {
+            throw new Error(`section name: ${sectionNameMap[n]} should be in message`);
+          }
+        });
+      }
     }
-
-    if (e instanceof Error) {
-      requiredSections.forEach((n) => {
-        if (!e.message.includes(n)) {
-          throw new Error(`section name: ${sectionNameMap[n]} should be in message`);
-        }
-      });
-    }
-  }
-
-  done();
+  }).not.toThrowError();
 });

@@ -13,8 +13,6 @@
 // limitations under the License.
 
 import { CoreEnforcer } from './coreEnforcer';
-import { BatchAdapter } from './persist';
-import { UpdatableAdapter } from './persist';
 import { PolicyOp } from './model';
 
 /**
@@ -33,7 +31,7 @@ export class InternalEnforcer extends CoreEnforcer {
       try {
         await this.adapter.addPolicy(sec, ptype, rule);
       } catch (e) {
-        if (e.message !== 'not implemented') {
+        if (e instanceof Error && e.message !== 'not implemented') {
           throw e;
         }
       }
@@ -72,7 +70,7 @@ export class InternalEnforcer extends CoreEnforcer {
         try {
           await this.adapter.addPolicies(sec, ptype, rules);
         } catch (e) {
-          if (e.message !== 'not implemented') {
+          if (e instanceof Error && e.message !== 'not implemented') {
             throw e;
           }
         }
@@ -118,7 +116,7 @@ export class InternalEnforcer extends CoreEnforcer {
         try {
           await this.adapter.updatePolicy(sec, ptype, oldRule, newRule);
         } catch (e) {
-          if (e.message !== 'not implemented') {
+          if (e instanceof Error && e.message !== 'not implemented') {
             throw e;
           }
         }
@@ -156,7 +154,7 @@ export class InternalEnforcer extends CoreEnforcer {
       try {
         await this.adapter.removePolicy(sec, ptype, rule);
       } catch (e) {
-        if (e.message !== 'not implemented') {
+        if (e instanceof Error && e.message !== 'not implemented') {
           throw e;
         }
       }
@@ -193,7 +191,7 @@ export class InternalEnforcer extends CoreEnforcer {
         try {
           await this.adapter.removePolicies(sec, ptype, rules);
         } catch (e) {
-          if (e.message !== 'not implemented') {
+          if (e instanceof Error && e.message !== 'not implemented') {
             throw e;
           }
         }
@@ -234,7 +232,7 @@ export class InternalEnforcer extends CoreEnforcer {
       try {
         await this.adapter.removeFilteredPolicy(sec, ptype, fieldIndex, ...fieldValues);
       } catch (e) {
-        if (e.message !== 'not implemented') {
+        if (e instanceof Error && e.message !== 'not implemented') {
           throw e;
         }
       }

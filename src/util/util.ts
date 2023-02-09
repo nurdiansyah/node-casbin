@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import * as fs from 'fs';
+import { cloneDeep } from '@deboxsoft/module-core';
 
 // escapeAssertion escapes the dots in the assertion,
 // because the expression evaluation doesn't support such variable names.
@@ -81,7 +82,7 @@ function setEquals(a: string[], b: string[]): boolean {
 }
 
 // readFile return a promise for readFile.
-function readFile(path: string, encoding?: string): any {
+function readFile(path: string, encoding?: BufferEncoding): any {
   return new Promise((resolve, reject) => {
     fs.readFile(path, encoding || 'utf8', (error, data) => {
       if (error) {
@@ -93,7 +94,7 @@ function readFile(path: string, encoding?: string): any {
 }
 
 // writeFile return a promise for writeFile.
-function writeFile(path: string, file: string, encoding?: string): any {
+function writeFile(path: string, file: string, encoding: BufferEncoding | null = null): any {
   return new Promise((resolve, reject) => {
     fs.writeFile(path, file, encoding || 'utf8', (error) => {
       if (error) {
@@ -139,8 +140,7 @@ function generatorRunSync(iterator: Generator<any>): any {
       throw new Error('cannot handle Promise in generatorRunSync, Please use generatorRunAsync');
     }
     if (!done) {
-      const temp = value;
-      ({ value, done } = iterator.next(temp));
+      ({ value, done } = iterator.next(value));
     } else {
       return value;
     }
@@ -160,22 +160,11 @@ async function generatorRunAsync(iterator: Generator<any>): Promise<any> {
   }
 }
 
-function deepCopy(obj: Array<any> | any): any {
-  if (typeof obj !== 'object') return;
-  const newObj: any = obj instanceof Array ? [] : {};
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
-    }
-  }
-  return newObj;
-}
-
 function customIn(a: number | string, b: number | string): number {
   if ((b as any) instanceof Array) {
-    return (((b as any) as Array<any>).includes(a) as unknown) as number;
+    return (b as any as Array<any>).includes(a) as unknown as number;
   }
-  return ((a in (b as any)) as unknown) as number;
+  return (a in (b as any)) as unknown as number;
 }
 
 function bracketCompatible(exp: string): string {
@@ -198,6 +187,8 @@ function bracketCompatible(exp: string): string {
   exp = array.join('');
   return exp;
 }
+
+const deepCopy = cloneDeep;
 
 export {
   escapeAssertion,

@@ -1,3 +1,4 @@
+import { test, expect, describe, beforeAll } from 'vitest';
 import { DefaultRoleManager, newSyncedEnforcer, RoleManager, SyncedEnforcer } from '../src';
 
 describe('Test Hierarchical Domain RBAC', () => {
