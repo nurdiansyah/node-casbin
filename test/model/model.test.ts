@@ -66,7 +66,6 @@ test('TestLoadModelFromConfig', () => {
       m.loadModelFromConfig(new MockConfig());
       expect('mestinya throw error').toBe('');
     } catch (e: any) {
-      console.log(e);
       if (e instanceof TypeError) {
         throw e;
       }

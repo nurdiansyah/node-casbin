@@ -2,10 +2,10 @@
   "name": "@deboxsoft/casbin",
   "version": "5.23.2",
   "description": "An authorization library that supports access control models like ACL, RBAC, ABAC in Node.JS",
-  "typings": "lib/index.d.ts",
+  "typings": "libs/index.d.ts",
   "type": "module",
   "exports": {
-    ".": "./lib/index.js"
+    ".": "./libs/index.js"
   },
   "scripts": {
     "prepack": "run-s lint test build",
@@ -13,10 +13,9 @@
     "prebuild": "pnpm clean",
     "build": "tsup",
     "test": "vitest",
-    "lint": "eslint . --ext .js,.ts",
-    "fmt": "eslint . --ext .js,.ts --fix",
-    "semantic-release": "semantic-release",
-    "commit": "git-cz",
+    "lint": "eslint ./src --ext .js,.ts",
+    "fmt": "eslint ./src --ext .js,.ts --fix",
+    "release": "bump -c && pnpm publish --access public",
     "clean": "rimraf lib",
     "coverage": "vitest run --coverage"
   },
