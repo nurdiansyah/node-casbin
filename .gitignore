@@ -5,3 +5,4 @@ libs
 yarn-error.log
 package-lock.json
 coverage
+.husky
