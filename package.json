@@ -1,6 +1,6 @@
 {
   "name": "@deboxsoft/casbin",
-  "version": "5.23.3",
+  "version": "5.23.4",
   "description": "An authorization library that supports access control models like ACL, RBAC, ABAC in Node.JS",
   "typings": "libs/index.d.ts",
   "type": "module",
