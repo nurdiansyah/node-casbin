@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as util from '../util';
+import * as util from '../util/builtinOperators';
 
 export type MatchingFunction = (...arg: any[]) => boolean | number | string | Promise<boolean> | Promise<number> | Promise<string>;
 

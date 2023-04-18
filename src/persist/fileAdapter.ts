@@ -2,12 +2,13 @@ import { Adapter } from './adapter';
 import { Model } from '../model';
 import { Helper } from './helper';
 import { arrayToString, readFile, writeFile } from '../util';
+import { UpdatableAdapter } from './updatableAdapter';
 
 /**
  * FileAdapter is the file adapter for Casbin.
  * It can load policy from file or save policy to file.
  */
-export class FileAdapter implements Adapter {
+export class FileAdapter implements Adapter, UpdatableAdapter {
   public readonly filePath: string;
 
   /**

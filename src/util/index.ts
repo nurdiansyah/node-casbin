@@ -14,3 +14,4 @@
 
 export * from './builtinOperators';
 export * from './util';
+export * from './file';

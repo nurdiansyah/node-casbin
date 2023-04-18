@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as rbac from '../rbac';
-import * as util from '../util';
+import * as util from '../util/util';
 import { Config, ConfigInterface } from '../config';
 import { Assertion } from './assertion';
 import { getLogger, logPrint } from '../log';
@@ -95,7 +95,7 @@ export class Model {
 
       ast.tokens = tokens;
     } else if (sec === 'm') {
-      const stringArguments = value.match(/\"(.*?)\"/g) || [];
+      const stringArguments = value.match(/"(.*?)"/g) || [];
 
       stringArguments.forEach((n, index) => {
         value = value.replace(n, `$<${index}>`);
